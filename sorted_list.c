@@ -1,3 +1,31 @@
+/*
+
+Felipe Santos Lourenço - SC303867X
+Heitor Lemes Caldas - SC303769X
+
+1-) Indique ponto(s) forte(s) e fraco(s) de uma lista ordenada, justificando-os.
+Pontos Fortes:
+
+    - Pesquisa Eficiente: Utiliza busca binária (O(logn)), mais rápida do que a busca linear em listas não ordenadas (O(n)). 
+    - Acesso Ordenado: Facilita exibir dados em sequência e encontrar elementos extremos de forma direta. 
+    - Inserção Controlada: Mantém a ordem após cada inserção, evitando reordenações frequentes. 
+
+Pontos Fracos: 
+
+    - Inserções e Deleções Custosas: Necessidade de deslocar elementos para manter a ordem, tornando essas operações lentas (O(n)). 
+    - Complexidade na Manutenção da Ordem: Manter a lista ordenada pode ser custoso com muitas atualizações. 
+    - Uso de Memória: Realocação de memória em algumas implementações pode ser uma operação custosa. 
+
+Portanto, as listas ordenadas são eficientes para buscas, mas podem ser menos ideais para aplicações com frequentes atualizações. 
+
+2-) Descreva a estratégia utilizada para o aumento de memória quando o usuário deseja inserir mais itens que o alocado previamente.
+
+A estratégia utilizada consiste na implementação de uma função chamada "resize_list", que atualmente está  definida para realocar a capacidade da lista em mais 10 posições. 
+Foi escolhido esse valor por se tratar de um programa simples, não realocando para um tamanho muito grande que será subutilizado, e nem um tamanho muito pequeno que seria 
+necessário realocar múltiplas vezes, assim atrapalhando o desempenho do programa. Essa função (resize_list) é utilizada dentro da função "insert_element" quando é realizada a 
+verificação se a lista está cheia para poder inserir o elemento, caso a verificação seja verdadeira, a função resize_list é chamada e realiza-se o aumento de memória.
+
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "sorted_list.h"
@@ -25,7 +53,7 @@ int is_empty(t_sorted_list *list){
 }
 
 void resize_list(t_sorted_list *list){
-    list->capacity += 20;
+    list->capacity += 10;
     list->numbers = (int *)realloc(list->numbers, list->capacity * sizeof(int));
 }
 
