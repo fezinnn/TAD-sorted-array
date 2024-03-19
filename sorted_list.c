@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include "sorted_list.h"
 
-typedef struct{
-    int *numbers;
-    int capacity;
-    int size;
-} t_sorted_list;
-
-
 t_sorted_list *create_list(int initial_capacity){
     t_sorted_list *list = (t_sorted_list *)malloc(sizeof(t_sorted_list));
 
@@ -51,10 +44,8 @@ void insert_element(t_sorted_list *list, int element){
     list->size++;
 }
 
-void print_list(t_sorted_list *list)
-{
-    for (int i = 0; i < list->size; i++)
-    {
+void print_list(t_sorted_list *list){
+    for (int i = 0; i < list->size; i++){
         printf("%d ", list->numbers[i]);
     }
     printf("\n");
@@ -81,7 +72,7 @@ int find_element(t_sorted_list *list, int begin, int end, int element){
 void remove_element(t_sorted_list *list, int element) {
     int index = find_element(list, 0, list->size, element);
 
-    if (index != -1) {
+    if (index != -1){
         for (int i = index; i < list->size - 1; i++) {
             list->numbers[i] = list->numbers[i + 1];
         }
